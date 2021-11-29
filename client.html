@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="description" content="This page helps to find something in the hervis">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Molnár István || Мельник Степан">
+    <meta name="keywords" content="embed, hervis, help, database, job">
+    <meta name="theme-color" content="#050">
+    <title>Hervis client</title>
+    <base target="_blank">
+    
+    <style type="text/css" rel="stylesheet">
+    
+      *:root{
+  font-size:16px;
+}
+*{
+  margin:0 auto;
+  box-sizing:border-box;
+}
+html{
+  
+}
+body#main{
+  background:linear-gradient(135deg, #000 16%, #030, #000 95%) no-repeat;
+  padding-bottom:16px;
+  background-size:cover;
+  min-height:100vh;
+}
+body#main > *{
+  margin:1vh auto;
+  color:#ffa9;
+}
+a{
+  pointer-events:none;
+  opacity:0;
+}
+body#main a{
+  pointer-events:auto;
+  opacity:1;
+  text-decoration:none;
+}
+input, button{
+  outline:none;
+}
+b{
+  font-weight:900;
+}
+i{
+  font-style:italic;
+}
+small{
+  font-size:.8rem;
+  font-weight:100;
+}
+.clearfix{
+  content:'';
+  display:block;
+  clear:both;
+}
+
+
+
+figure{
+  
+}
+#herv{
+  width:32%;
+  display:block;
+  filter:grayscale(.5);
+}
+figcaption{
+  text-align:center;
+  font-size:8px;
+}
+form{
+  margin-top:8px !important;
+}
+form > *{
+  float:left;
+  width:50%;
+}
+form > label{
+  width:45%;
+  font-size:10px;
+}
+form > label:nth-of-type(1){
+  position:relative;
+  top:10px;
+  text-indent:8px;
+}
+form > label:nth-of-type(2){
+  width:50%;
+  background:#090;
+  text-indent:8px;
+  font-size:24px;
+  letter-spacing:2px;
+  color:#ffa;
+  box-shadow:2px 1px 5px #0f0;
+  border-radius:4px;
+  min-height:1rem;
+}
+form > button{
+  display:block;
+  width:75%;
+  margin:4% 12.5%;
+  zoom:1.3;
+  background:linear-gradient(to right, transparent, #0f0, transparent);
+  border-radius:4px;
+  border:1px #ff09 outset;
+  filter:drop-shadow(1px 2px 4px #ff09);
+  font-weight:900;
+  font-family:serif;
+  text-shadow:1px 1px 3px #000;
+}
+form > button:nth-of-type(2){
+  margin-top:0;
+}
+div{
+  
+}
+div > span{
+  float:left;
+  width:25%;
+  margin-left:calc(25% / 4);
+  height:16px;
+  background:#050;
+  margin-top:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  padding:16px 0;
+  text-shadow:2px 1px 4px #000;
+  background:linear-gradient(135deg, #0000 16%, #090, #0000 95%);
+  border:1px outset #090;
+}
+div > span:nth-of-type(10){
+  margin-left:calc(25% / 4 * 2 + 25%);
+}
+iframe{
+  width:95%;
+  border:1px #0f0 outset;
+  border-radius:4px;
+  position:relative;
+  top:8px;
+}
+
+
+@media (min-width:1080px) {
+  html, body {
+    opacity:.64 !important;
+  }
+}
+
+
+
+    
+    </style>
+    
+  </head>
+  <body id="main">
+    <figure id="figure">
+      <img id="herv" src="https://www.hervis.hu/shop/assets/icons/hervis.svg" alt="img about Hervis logo" title="Hervis client">
+      <figcaption>Hervis logo</figcaption>
+    </figure>
+    <form id="form">
+      <label id="url">https://www.hervis.hu/shop/p/</label>
+      <label id="key">integer</label>
+      <button type="button" id="here">Load it here</button>
+      <button type="button" id="blank">Open in new page</button>
+    </form>
+    <div id="numbers" class="clearfix"></div>
+    <iframe id="iframe" class="clearfix" src="" title="Hervis embeded webpage"></iframe>
+    
+    <script type="text/javascript">
+    
+      console.clear();
+console.time();
+console.group();
+
+const vh = screen.height;
+
+( () => {
+  let leftovers = document.body.offsetHeight - ( figure.offsetHeight + form.offsetHeight + numbers.offsetHeight + (256 + 64));
+  iframe.style.height = leftovers + 'px';
+})();
+
+key.addEventListener('click', () => {
+  key.innerText = '';
+});
+
+window.setTimeout(() => key.innerText = '', 1024);
+
+const integers = '1,2,3,4,5,6,7,8,9,0',
+      array = integers.split(',');
+
+const genE = (name) => document.createElement(name);
+
+( () => {
+  let loop = 0;
+  do{
+    let span = genE('SPAN'),
+        string = document.createTextNode(array[loop]);
+    span.appendChild(string);
+    numbers.insertBefore(span, null);
+    span.addEventListener('click', () => {
+      key.innerHTML += span.textContent;
+    });
+    loop++;
+  } while(loop < array.length);
+  let spand = genE('SPAN'),
+      stringd = document.createTextNode('←');
+    spand.appendChild(stringd);
+    numbers.insertBefore(spand, null);
+    spand.addEventListener('click', () => {
+      let del1 = key.innerText.substring(0, key.innerText.length - 1);
+      key.innerHTML = del1;
+    });
+})();
+
+blank.addEventListener('click', () => {
+  window.open((url.innerText + key.innerText), "_blank");
+});
+
+here.addEventListener('click', () => {
+  iframe.src = url.innerText + key.innerText;
+});
+
+
+document.body.addEventListener('click', () => {
+  document.documentElement.requestFullscreen();
+});
+
+
+console.timeEnd();
+console.log('%c The program successfully was loaded', 'font-size:25px; color:#ff0;');
+      
+    </script>
+    
+  </body>
+</html>
