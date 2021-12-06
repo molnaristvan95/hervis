@@ -27,6 +27,7 @@ body#main{
   padding-bottom:16px;
   background-size:cover;
   min-height:100vh;
+  overflow:hidden hidden !important;
 }
 body#main > *{
   margin:1vh auto;
@@ -66,7 +67,7 @@ figure{
   
 }
 #herv{
-  width:32%;
+  width:16%;
   display:block;
   filter:grayscale(.5);
 }
@@ -154,7 +155,9 @@ iframe{
   }
 }
 
-
+::-webkit-scrollbar{
+  display:none;
+}
 
     
     </style>
@@ -183,7 +186,7 @@ console.group();
 const vh = screen.height;
 
 ( () => {
-  let leftovers = document.body.offsetHeight - ( figure.offsetHeight + form.offsetHeight + numbers.offsetHeight + (256 + 64));
+  let leftovers = document.body.offsetHeight - ( figure.offsetHeight + form.offsetHeight + numbers.offsetHeight + (256 + 32));
   iframe.style.height = leftovers + 'px';
 })();
 
