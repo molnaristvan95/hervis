@@ -11,8 +11,7 @@
     <base target="_blank">
     
     <style type="text/css" rel="stylesheet">
-    
-      *:root{
+    *:root{
   font-size:16px;
 }
 *{
@@ -116,8 +115,14 @@ form > button{
   font-family:serif;
   text-shadow:1px 1px 3px #000;
 }
+form > button:nth-of-type(1){
+  width:33%;
+  font-size:8px;
+}
 form > button:nth-of-type(2){
-  margin-top:0;
+  margin-top:-8px;
+  height:24px;
+  margin-bottom:0;
 }
 div{
   
@@ -146,7 +151,7 @@ iframe{
   border:1px #0f0 outset;
   border-radius:4px;
   position:relative;
-  top:8px;
+  top:calc(8px + 4px);
 }
 
 
@@ -159,8 +164,6 @@ iframe{
 ::-webkit-scrollbar{
   display:none;
 }
-
-    
     </style>
     
   </head>
@@ -172,22 +175,21 @@ iframe{
     <form id="form">
       <label id="url">https://www.hervis.hu/shop/p/</label>
       <label id="key">integer</label>
-      <button type="button" id="here">Load it here</button>
       <button type="button" id="blank">Open in new page</button>
+      <button type="button" id="here">Load it here</button>
     </form>
     <div id="numbers" class="clearfix"></div>
     <iframe id="iframe" class="clearfix" src="" title="Hervis embeded webpage"></iframe>
     
     <script type="text/javascript">
-    
-      console.clear();
+    console.clear();
 console.time();
 console.group();
 
 const vh = screen.height;
 
 ( () => {
-  let leftovers = document.body.offsetHeight - ( figure.offsetHeight + form.offsetHeight + numbers.offsetHeight + (256 + 64 + 16));
+  let leftovers = document.body.offsetHeight - ( figure.offsetHeight + form.offsetHeight + numbers.offsetHeight + (256 + 64));
   iframe.style.height = leftovers + 'px';
 })();
 
