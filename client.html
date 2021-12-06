@@ -28,6 +28,7 @@ body#main{
   background-size:cover;
   min-height:100vh;
   overflow:hidden hidden !important;
+  padding-top:4px;
 }
 body#main > *{
   margin:1vh auto;
@@ -127,7 +128,7 @@ div > span{
   margin-left:calc(25% / 4);
   height:16px;
   background:#050;
-  margin-top:8px;
+  margin-top:16px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -186,7 +187,7 @@ console.group();
 const vh = screen.height;
 
 ( () => {
-  let leftovers = document.body.offsetHeight - ( figure.offsetHeight + form.offsetHeight + numbers.offsetHeight + (256 + 32));
+  let leftovers = document.body.offsetHeight - ( figure.offsetHeight + form.offsetHeight + numbers.offsetHeight + (256 + 64 + 16));
   iframe.style.height = leftovers + 'px';
 })();
 
